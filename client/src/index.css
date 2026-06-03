@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --color-app: #0d0f18;
+  --color-surface: #161926;
+  --color-surface-2: #1e2233;
+  --color-line: #2a2f47;
+  --color-accent: #6366f1;
+  --color-accent-hover: #818cf8;
+  --color-app-text: #e2e8f0;
+  --color-muted: #8892a4;
+  --color-app-green: #22c55e;
+  --color-app-red: #ef4444;
+
+  --font-mono: 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100dvh;
+}
+
+body {
+  margin: 0;
+  background: var(--color-app);
+  color: var(--color-app-text);
+  font-family: var(--font-sans);
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  padding: 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-top: -4px;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-line);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-line);
+}
