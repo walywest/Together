@@ -272,7 +272,7 @@ while true; do
       fi
     fi
 
-  done < <(arp-scan --localnet --ignoredups --retry=2 --timeout=1500 2>/dev/null \
+  done < <(arp-scan -I "$IFACE" --localnet --ignoredups --retry=2 --timeout=1500 2>/dev/null \
              | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
 
   log "Sweep done. Next in ${SCAN_INTERVAL}s. Alerts logged to $ALERT_LOG"

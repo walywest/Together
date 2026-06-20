@@ -65,7 +65,7 @@ for round in $(seq 1 "$NUM_ROUNDS"); do
   echo "[*] ARP scan pass $round/$NUM_ROUNDS..."
   while IFS=$'\t' read -r ip mac vendor; do
     record "$mac" "$ip" "$vendor" "arp"
-  done < <(arp-scan --localnet --ignoredups --retry=2 --timeout=1500 \
+  done < <(arp-scan -I "$IFACE" --localnet --ignoredups --retry=2 --timeout=1500 \
              | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
 done
 

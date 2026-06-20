@@ -29,7 +29,7 @@ if [ -n "$1" ]; then
 else
   log "Scanning network to identify devices..."
   sep
-  arp-scan --localnet --ignoredups --retry=3 --timeout=2000 2>/dev/null \
+  arp-scan -I "$IFACE" --localnet --ignoredups --retry=3 --timeout=2000 2>/dev/null \
     | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' \
     | nl -w2 -s') '
   sep
