@@ -11,9 +11,14 @@
   languages.python.version = "3.13";
   languages.python.uv.enable = true;
   languages.python.venv.enable = true;
-  # languages.python.venv.requirements =
-  #   builtins.readFile ./server/requirements.txt +
-  #   builtins.readFile ./server/requirements-dev.txt;
+  languages.python.venv.requirements = ./requirements.txt;
+  enterShell = ''
+    # Auto-activate devenv-managed virtualenv when entering the shell
+    if [ -f .devenv/state/venv/bin/activate ]; then
+      # Works for bash, zsh, etc.
+      . .devenv/state/venv/bin/activate
+    fi
+  '';
   packages = with pkgs; [
     tcpdump
     cargo
@@ -26,11 +31,11 @@
   ];
 
   scripts.network-scan.exec = ''
-    exec "$DEVENV_ROOT/network_scan.sh" "$@"
+    exec "$DEVENV_ROOT/network_security/network_scan.sh" "$@"
   '';
 
   scripts.pin-intruder.exec = ''
-    exec "$DEVENV_ROOT/pin_intruder.sh" "$@"
+    exec "$DEVENV_ROOT/network_security/pin_intruder.sh" "$@"
   '';
 
   scripts.sentinel.exec = ''
