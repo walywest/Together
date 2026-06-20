@@ -1,0 +1,12 @@
+{
+  "captured_at": "2026-06-03T17:45:12+02:00",
+  "mac": "ca:27:83:1d:81:60",
+  "ip_at_capture": "192.168.1.135",
+  "nmap_os": "",
+  "nmap_device_type": "",
+  "dhcp_fingerprint": "",
+  "dhcp_hostname": "",
+  "dhcp_vendor_class": "",
+  "mdns_hostname": "",
+  "mdns_services": []
+}
