@@ -1,6 +1,6 @@
 # Python env is managed by devenv — run targets inside `devenv shell` or with direnv active
 
-.PHONY: help install install-client dev server client build preview clean
+.PHONY: help install install-client dev server client build preview clean fitgirl fitgirl-install
 
 # ── Help ────────────────────────────────────────────────────────────────────
 
@@ -16,7 +16,10 @@ help:
 	@printf '  \033[36mbuild\033[0m            Build client for production\n'
 	@printf '  \033[36mpreview\033[0m          Preview the production build\n'
 	@printf '\n'
-	@printf '  \033[36mclean\033[0m            Remove node_modules, dist, caches\n\n'
+	@printf '  \033[36mclean\033[0m            Remove node_modules, dist, caches\n'
+	@printf '\n'
+	@printf '  \033[36mfitgirl-install\033[0m  Create Windows venv and install deps\n'
+	@printf '  \033[36mfitgirl\033[0m          Run the FitGirl link extractor GUI (auto-installs)\n\n'
 
 # ── Install ──────────────────────────────────────────────────────────────────
 
@@ -35,6 +38,19 @@ client:
 
 dev: install
 	$(MAKE) -j2 server client
+
+# ── Tools ───────────────────────────────────────────────────────────────────
+
+fitgirl-install:
+	python.exe -m venv .venv-win
+	chmod -R +x .venv-win/Scripts/
+	.venv-win/Scripts/pip.exe install -r requirements.txt
+
+.venv-win/Scripts/python.exe:
+	$(MAKE) fitgirl-install
+
+fitgirl: .venv-win/Scripts/python.exe
+	.venv-win/Scripts/python.exe link-extractor.py
 
 # ── Build ────────────────────────────────────────────────────────────────────
 
